@@ -1,10 +1,13 @@
 source 'https://rubygems.org'
 
+# Validate dates
+gem 'validates_timeliness'
+
 # Use protected_attributes
 gem 'protected_attributes'
 
 # Use has_secure_token to add security to model
-gem 'has_secure_token'
+# gem 'has_secure_token'
 
 gem 'rack-cors'
 
