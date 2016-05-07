@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :password, :email, :name, :idFacebook, :score, :birthday,
+  attr_accessible :password, :email, :name, :id_social, :score, :birthday,
     :gender
 
   before_create { generate_token(:token) }
