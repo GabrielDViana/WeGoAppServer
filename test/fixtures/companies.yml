@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyString
+  adress: MyString
+  lat: 1.5
+  lon: 1.5
+  operating_now: false
+  time_opens: 2016-05-10 14:49:50
+  time_closes: 2016-05-10 14:49:50
+  token: MyString
+
+two:
+  name: MyString
+  description: MyString
+  adress: MyString
+  lat: 1.5
+  lon: 1.5
+  operating_now: false
+  time_opens: 2016-05-10 14:49:50
+  time_closes: 2016-05-10 14:49:50
+  token: MyString

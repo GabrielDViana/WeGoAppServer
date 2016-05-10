@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160505202717) do
+ActiveRecord::Schema.define(version: 20160510183524) do
+
+  create_table "companies", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "adress"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "operating_now"
+    t.time     "time_opens"
+    t.time     "time_closes"
+    t.string   "token"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -25,6 +39,7 @@ ActiveRecord::Schema.define(version: 20160505202717) do
     t.datetime "password_reset_sent_at"
     t.date     "birthday"
     t.string   "gender"
+    t.string   "auth_token"
   end
 
 end

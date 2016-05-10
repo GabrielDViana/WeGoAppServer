@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   root 'users#show'
   post 'users/create' => 'users#create'
   get  'users/show'  => 'users#show'
-  get  'users/login/:email'  => 'users#login', :constraints => { :email => /[^\/]+/ }
-  post 'users/login/:email'  => 'users#login', :constraints => { :email => /[^\/]+/ }
+  get  'users/login/:email'  => 'sessions#create', :constraints => { :email => /[^\/]+/ }
+  post 'users/login/:email'  => 'sessions#create', :constraints => { :email => /[^\/]+/ }
+  get  'users/login_twitter/:id_social'  => 'sessions#login_twitter'
+  post 'users/login_twitter/:id_social'  => 'sessions#login_twitter'
   post 'password_reset/create' => 'password_reset#create'
   get  'password_reset/:key/edit'  => 'password_reset#edit', :constraints => { :email => /[^\/]+/ }
   patch  'password_reset/:key' => 'password_reset#update'
