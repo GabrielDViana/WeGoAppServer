@@ -1,24 +1,21 @@
 class Company < ActiveRecord::Base
   attr_accessible :user, :adress, :name, :description, :latitude, :longitude,
-      :time_opens, :time_closes
+      :time_opens, :time_closes, :token, :user_id
 
   belongs_to :user
   before_create { generate_token(:token) }
-  has_many :favorites
-  has_many :users, through: :favorites
-
 
   validates   :name,
               presence: true
 
-  validate :end_after_start_time
-
-  validates :time_opens, :time_closes, :presence => true
-
-  validates   :description,
-              presence: true,
-              :on => :create,
-              length:{ maximum: 280 }
+  # validate :end_after_start_time
+  #
+  # validates :time_opens, :time_closes, :presence => true
+  #
+  # validates   :description,
+  #             presence: true,
+  #             :on => :create,
+  #             length:{ maximum: 280 }
 
 def to_param
   token
