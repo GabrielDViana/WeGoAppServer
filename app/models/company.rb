@@ -8,14 +8,14 @@ class Company < ActiveRecord::Base
   validates   :name,
               presence: true
 
-  # validate :end_after_start_time
-  #
-  # validates :time_opens, :time_closes, :presence => true
-  #
-  # validates   :description,
-  #             presence: true,
-  #             :on => :create,
-  #             length:{ maximum: 280 }
+  validate :end_after_start_time
+
+  validates :time_opens, :time_closes, :presence => true
+
+  validates   :description,
+              presence: true,
+              :on => :create,
+              length:{ maximum: 280 }
 
 def to_param
   token

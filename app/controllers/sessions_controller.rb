@@ -17,15 +17,12 @@ class SessionsController < ApplicationController
 
     def login_twitter
       user = User.find_by_id_social(params[:id_social])
-      if !user.blank?
-        if user && user.authenticate(params[:password])
-          cookies[:auth_token] = user.auth_token
-          @current_user = User.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token]
-          render json: @current_user
-        end
-      elsif user.blank?
-        user = User.create(login_twitter_params)
-        User.login(user)
+      if user && user.authenticate(params[:password])
+        cookies[:auth_token] = user.auth_token
+        @current_user = User.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token]
+        render json: @current_user
+      else
+        puts "Usuário inexistente ou senha incorreta"
       end
     end
 
