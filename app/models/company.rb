@@ -1,6 +1,6 @@
 class Company < ActiveRecord::Base
   attr_accessible :user, :adress, :name, :description, :latitude, :longitude,
-      :time_opens, :time_closes, :token, :user_id
+      :time_opens, :time_closes, :token, :user_id, :days
 
   belongs_to :user
   before_create { generate_token(:token) }

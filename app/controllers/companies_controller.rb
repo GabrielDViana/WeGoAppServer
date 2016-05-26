@@ -30,10 +30,14 @@ class CompaniesController < ApplicationController
     @user = User.find_by_auth_token(params[:auth_token])
     @company = @user.companies.build(company_params)
     @company.user_id = @user.id
+    @company.time_opens = params[:time_opens].to_time
+    @company.time_closes = params[:time_closes].to_time
+    @company.days = params[:days].split(",").join(", ")
+
     if @company.save
       render json: @company
     else
-      puts 'fail'
+      puts @company.errors
     end
   end
 
@@ -64,7 +68,7 @@ class CompaniesController < ApplicationController
 
     def company_params
       params.require(:company).permit(:name, :description, :time_opens, :time_closes, :adress,
-        :latitude, :longitude, :token)
+        :latitude, :longitude, :token, :days)
     end
 
     # def authorize
