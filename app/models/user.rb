@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :password, :email, :name, :id_social, :score, :birthday,
     :gender
   has_many :companies
+  has_many :ratings
   before_create { generate_token(:token) }
   before_create { generate_token(:auth_token) }
   has_secure_password

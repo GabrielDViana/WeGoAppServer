@@ -3,6 +3,7 @@ class Company < ActiveRecord::Base
       :time_opens, :time_closes, :token, :user_id, :days
 
   belongs_to :user
+  has_many :ratings
   before_create { generate_token(:token) }
 
   # validates   :name,
