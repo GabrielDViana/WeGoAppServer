@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   patch  'password_reset/:key' => 'password_reset#update'
   get  'company/create'  => 'companies#create'
   post 'company/create'  => 'companies#create'
+  get  'company/'  => 'companies#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
