@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 skip_before_filter :verify_authenticity_token, :only => [:update]
 
   def create
@@ -12,11 +12,13 @@ skip_before_filter :verify_authenticity_token, :only => [:update]
   end
 
   def show
-    @users = User.all
-    render json: @users
+    render :json => @user.to_json(:include => :companies )
   end
 
   private
+  def set_user
+    @user = User.find_by_token(params[:token])
+  end
   def user_params
     params.require(:user).permit(:name , :email, :id_social, :password,
       :password_confirmation, :birthday, :gender)
