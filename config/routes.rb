@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get  'users/show'  => 'users#show'
   get  'users/login/:email'  => 'sessions#create', :constraints => { :email => /[^\/]+/ }
   post 'users/login/:email'  => 'sessions#create', :constraints => { :email => /[^\/]+/ }
+  post 'users/follow' => 'relationships#create'
+  post 'users/unfollow' => 'relationships#destroy'
 
   get  'login_twitter/:id_social'  => 'sessions#login_twitter'
   post 'login_twitter/:id_social'  => 'sessions#login_twitter'
@@ -18,6 +20,7 @@ Rails.application.routes.draw do
   post 'company/create'  => 'companies#create'
   get  'company/'  => 'companies#index'
   post 'company/rate' => 'ratings#create'
+  get 'company/show/' => 'companies#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
