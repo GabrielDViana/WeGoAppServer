@@ -11,8 +11,6 @@ class RatingsController < ApplicationController
     @rating.company = @company
     if @rating.save
       render json: @rating
-    else
-      render action: 'new'
     end
   end
 
