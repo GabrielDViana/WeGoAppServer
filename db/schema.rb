@@ -31,14 +31,11 @@ ActiveRecord::Schema.define(version: 20160607194132) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "favorited_id"
-    t.string   "favorited_type"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.integer "user_id"
+    t.integer "company_id"
   end
 
-  add_index "favorites", ["favorited_type", "favorited_id"], name: "index_favorites_on_favorited_type_and_favorited_id"
+  add_index "favorites", ["company_id"], name: "index_favorites_on_company_id"
   add_index "favorites", ["user_id"], name: "index_favorites_on_user_id"
 
   create_table "ratings", force: :cascade do |t|

@@ -4,8 +4,7 @@ class User < ActiveRecord::Base
   has_many :companies
   has_many :ratings
   has_many :favorites
-  # has_many :companies, through: :favorites, source: :favorited,
-  #           source_type: 'Company'
+  has_many :companies, through: :favorites
 
   has_many :active_relationships,  class_name:  "Relationship",
                                    foreign_key: "follower_id",

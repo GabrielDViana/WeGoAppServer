@@ -5,7 +5,7 @@ class CompaniesController < ApplicationController
 
   def index
     @companies = Company.all
-    render :json => @companies.to_json(:include => :user )
+    render :json => @companies.to_json(:include => :user, :include => :users )
   end
 
   def new

@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
         if user && user.authenticate(params[:password])
             cookies[:auth_token] = user.auth_token
             @current_user = User.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token]
-            render json: @current_user
+            render json: @current_user.to_json(:include => :favorites )
         else
             puts "Usuário inexistente ou senha incorreta"
         end

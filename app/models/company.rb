@@ -4,6 +4,11 @@ class Company < ActiveRecord::Base
 
   belongs_to :user
   has_many :ratings
+  has_many :favorites
+  has_many :users, through: :favorites
+
+  validates :company_id,
+            uniqueness: true
   before_create { generate_token(:token) }
 
   # validates   :name,

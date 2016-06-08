@@ -1,6 +1,4 @@
 class RatingsController < ApplicationController
-  def new
-  end
 
   def create
     @current_user = User.find_by_auth_token(params[:user_auth_token])
