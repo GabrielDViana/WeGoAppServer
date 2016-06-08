@@ -32,10 +32,10 @@ class CompaniesController < ApplicationController
     @user = User.find_by_auth_token(params[:auth_token])
     @company = @user.companies.build(company_params)
     @company.user_id = @user.id
-    @time = params[:time_opens].to_time(:utc)
+    @time = params[:time_opens].to_time
     @company.time_opens = @time
-    @company.time_closes = params[:time_closes].to_time(:utc)
-    @company.days = params[:days].split(",").join(", ")
+    @company.time_closes = params[:time_closes].to_time
+    @company.days = params[:days]
 
     if @company.save!
       render json: @company
@@ -55,7 +55,9 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    render :json => @company.to_json(:include => :user )
+    @average_rating = @company.average_rating
+    puts @average_rating
+    render :json => @company , :include => :user , :methods => [:average_rating, :people_rated]
   end
 
   def edit

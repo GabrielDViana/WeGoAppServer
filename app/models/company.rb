@@ -7,21 +7,20 @@ class Company < ActiveRecord::Base
   has_many :favorites
   has_many :users, through: :favorites
 
-  validates :company_id,
-            uniqueness: true
   before_create { generate_token(:token) }
 
-  # validates   :name,
-  #             presence: true
-  #
-  # validate :end_after_start_time
-  #
-  # validates :time_opens, :time_closes, :presence => true
-  #
-  # validates   :description,
-  #             presence: true,
-  #             :on => :create,
-  #             length:{ maximum: 280 }
+  serialize :days, Array
+  validates   :name,
+              presence: true
+
+  validate :end_after_start_time
+
+  validates :time_opens, :time_closes, :presence => true
+
+  validates   :description,
+              presence: true,
+              :on => :create,
+              length:{ maximum: 280 }
 
 def to_param
   token
@@ -31,6 +30,16 @@ def generate_token(column)
     begin
         self[column] = SecureRandom.urlsafe_base64
     end while User.exists?(column => self[column])
+end
+
+def average_rating
+  if self.ratings.size > 0
+    self.ratings.sum(:rate) / self.ratings.size
+  end
+end
+
+def people_rated
+  self.ratings.size
 end
 
 private
