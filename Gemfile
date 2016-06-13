@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'geokit-rails'
 # Validate dates
 gem 'validates_timeliness'
 

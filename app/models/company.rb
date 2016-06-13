@@ -9,6 +9,12 @@ class Company < ActiveRecord::Base
 
   before_create { generate_token(:token) }
 
+  acts_as_mappable :default_units => :kilometers,
+                   :default_formula => :sphere,
+                   :distance_field_name => :distance,
+                   :lat_column_name => :latitude,
+                   :lng_column_name => :longitude
+
   serialize :days, Array
   validates   :name,
               presence: true

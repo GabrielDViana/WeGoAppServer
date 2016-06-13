@@ -10,8 +10,6 @@ class SessionsController < ApplicationController
             cookies[:auth_token] = user.auth_token
             @current_user = User.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token]
             render json: @current_user.to_json(:include => :favorites )
-        else
-            puts "Usuário inexistente ou senha incorreta"
         end
     end
 
@@ -21,8 +19,6 @@ class SessionsController < ApplicationController
         cookies[:auth_token] = user.auth_token
         @current_user = User.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token]
         render json: @current_user
-      else
-        puts "Usuário inexistente ou senha incorreta"
       end
     end
 
