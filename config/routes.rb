@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get  'company/show/' => 'companies#show'
   post 'company/favorite' => 'favorite#create'
   get  'company/search' => 'searches#create'
+  get  'company/favorites' => 'companies#favorites'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

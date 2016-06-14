@@ -5,7 +5,13 @@ class CompaniesController < ApplicationController
 
   def index
     @companies = Company.all
-    render :json => @companies.to_json(:include => [:user, :users] )
+    render :json => @companies.to_json(:include => [:user, :users, :favorites] )
+  end
+
+  def favorites
+    @user = User.find_by_auth_token(params[:auth_token])
+    @companies = @user.companies
+    render :json => @companies.to_json(:include => [:user, :users, :favorites] )
   end
 
   def new
@@ -57,7 +63,7 @@ class CompaniesController < ApplicationController
   def show
     @average_rating = @company.average_rating
     puts @average_rating
-    render :json => @company , :include => :user , :methods => [:average_rating, :people_rated]
+    render :json => @company , :include => [:user, :favorites] , :methods => [:average_rating, :people_rated]
   end
 
   def edit
