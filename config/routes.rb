@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   post 'company/rate' => 'ratings#create'
   get  'company/show/' => 'companies#show'
   post 'company/favorite' => 'favorite#create'
+  post  'company/search' => 'searches#create'
   get  'company/search' => 'searches#create'
   get  'company/favorites' => 'companies#favorites'
 

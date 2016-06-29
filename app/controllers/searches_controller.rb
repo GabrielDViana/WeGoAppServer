@@ -2,7 +2,7 @@ class SearchesController < ApplicationController
   def create
     @search = Search.create(search_params)
     @search = Search.find(search_params)
-    render :json => @search.to_json(:include => [:user, :users] )
+    render :json => @search.to_json
   end
 
   private

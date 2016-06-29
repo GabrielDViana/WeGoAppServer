@@ -5,7 +5,7 @@ class CompaniesController < ApplicationController
 
   def index
     @companies = Company.all
-    render :json => @companies.to_json(:include => [:user, :users, :favorites] )
+    render :json => @companies.to_json(:include => [:user, :users, :favorites], :methods => [:average_rating] )
   end
 
   def favorites
@@ -19,22 +19,7 @@ class CompaniesController < ApplicationController
   end
 
   def create
-    # company = Company.new (company_params);
-    # @unreadFile = Array.new
-    # @unreadFile = company_params[:company_images];
-    # @file = Array.new
-    # @file.each do |f|
-    #   @unreadFile.each do |u|
-    #     f.file = u.unreadFile.tempfile.read
-    #   end
-    # end
-    #
-    # @pics = Array.new
-    # @pics.each do |c|
-    #   @file.each do |f|
-    #     c.company_images = Base64.encode64(f.file)
-    #   end
-    # end
+    
     @user = User.find_by_auth_token(params[:auth_token])
     @company = @user.companies.build(company_params)
     @company.user_id = @user.id
@@ -63,7 +48,7 @@ class CompaniesController < ApplicationController
   def show
     @average_rating = @company.average_rating
     puts @average_rating
-    render :json => @company , :include => [:user, :favorites] , :methods => [:average_rating, :people_rated]
+    render :json => @company , :include => [:user, :favorites, :ratings] , :methods => [:average_rating, :people_rated]
   end
 
   def edit
