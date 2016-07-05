@@ -10,17 +10,19 @@ class SessionsController < ApplicationController
         cookies[:auth_token] = user.auth_token
         @current_user = User.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token]
         render json: @current_user.to_json(:include => :companies )
+      else
+        render json: { error: 'Incorrect credentials' }, status: 401
       end
     end
 
     def login_twitter
       user = User.find_by_id_social(params[:id_social])
-      if user && user.authenticate(params[:password])
+      if user.authenticate(params[:password])
         cookies[:auth_token] = user.auth_token
         @current_user = User.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token]
-        render json: @current_user
+        render json: @current_user.to_json(:include => :companies )
       else
-        puts "Usuário inexistente ou senha incorreta"
+        render json: { error: 'Incorrect credentials' }, status: 401
       end
     end
 

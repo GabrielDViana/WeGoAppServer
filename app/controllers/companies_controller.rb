@@ -19,7 +19,7 @@ class CompaniesController < ApplicationController
   end
 
   def create
-    
+
     @user = User.find_by_auth_token(params[:auth_token])
     @company = @user.companies.build(company_params)
     @company.user_id = @user.id

@@ -6,8 +6,6 @@ skip_before_filter :verify_authenticity_token, :only => [:update]
     @user = User.new(user_params)
     if @user.save
       render json: @user
-    else
-      puts @user.errors
     end
   end
 
