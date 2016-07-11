@@ -27,7 +27,8 @@ class CompaniesController < ApplicationController
     @company.time_opens = @time
     @company.time_closes = params[:time_closes].to_time
     @company.days = params[:days]
-
+    @company.company_images = params[:company_images]
+    
     if @company.save!
       render json: @company
       puts @company
@@ -65,7 +66,7 @@ class CompaniesController < ApplicationController
 
     def company_params
       params.require(:company).permit(:name, :description, :time_opens, :time_closes, :adress,
-        :latitude, :longitude, :token, :days => [])
+        :latitude, :longitude, :token, :days => [], :company_images => [])
     end
 
     # def authorize

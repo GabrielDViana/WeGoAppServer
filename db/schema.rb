@@ -23,9 +23,9 @@ ActiveRecord::Schema.define(version: 20160609214616) do
     t.time     "time_opens"
     t.time     "time_closes"
     t.string   "token"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.text     "company_images", default: "{}"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "company_images"
     t.integer  "user_id"
     t.string   "days"
   end
