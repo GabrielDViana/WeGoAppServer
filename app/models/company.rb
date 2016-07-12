@@ -6,6 +6,7 @@ class Company < ActiveRecord::Base
   has_many :ratings
   has_many :favorites
   has_many :users, through: :favorites
+  belongs_to :subcategory
 
   before_create { generate_token(:token) }
 

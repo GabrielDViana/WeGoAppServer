@@ -28,7 +28,7 @@ class CompaniesController < ApplicationController
     @company.time_closes = params[:time_closes].to_time
     @company.days = params[:days]
     @company.company_images = params[:company_images]
-    
+
     if @company.save!
       render json: @company
       puts @company
@@ -59,6 +59,10 @@ class CompaniesController < ApplicationController
       @company.destroy
   end
 
+  def categories
+    @categories = Category.all
+    render :json => @categories , :include => [:subcategories] 
+  end
   private
     def set_company
       @company = Company.find_by_token(params[:token])
