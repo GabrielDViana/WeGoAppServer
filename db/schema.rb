@@ -33,8 +33,10 @@ ActiveRecord::Schema.define(version: 20160712194233) do
     t.integer  "user_id"
     t.string   "days"
     t.integer  "subcategory_id"
+    t.integer  "category_id"
   end
 
+  add_index "companies", ["category_id"], name: "index_companies_on_category_id"
   add_index "companies", ["subcategory_id"], name: "index_companies_on_subcategory_id"
 
   create_table "favorites", force: :cascade do |t|

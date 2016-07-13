@@ -28,7 +28,10 @@ class CompaniesController < ApplicationController
     @company.time_closes = params[:time_closes].to_time
     @company.days = params[:days]
     @company.company_images = params[:company_images]
-
+    @subcategory = Subcategory.find_by_name(params[:subcategory])
+    @category = Category.find_by_name(params[:category])
+    @company.subcategory_id = @subcategory.id
+    @company.category_id = @category.id
     if @company.save!
       render json: @company
       puts @company
@@ -61,7 +64,7 @@ class CompaniesController < ApplicationController
 
   def categories
     @categories = Category.all
-    render :json => @categories , :include => [:subcategories] 
+    render :json => @categories , :include => [:subcategories]
   end
   private
     def set_company
@@ -71,6 +74,13 @@ class CompaniesController < ApplicationController
     def company_params
       params.require(:company).permit(:name, :description, :time_opens, :time_closes, :adress,
         :latitude, :longitude, :token, :days => [], :company_images => [])
+    end
+
+    def category_params
+      params.require(:category).permit(:name, :id)
+    end
+    def subcategory_params
+      params.require(:subcategory).permit(:name, :id)
     end
 
     # def authorize
