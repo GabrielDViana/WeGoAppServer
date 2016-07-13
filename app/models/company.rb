@@ -19,8 +19,8 @@ class Company < ActiveRecord::Base
 
   serialize :days, Array
   serialize :company_images, Array
-  # validates :company_images,
-  #           # presence: true
+  validates :company_images,
+            presence: true
   validates   :name,
               presence: true
 
