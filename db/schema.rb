@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160712194233) do
+ActiveRecord::Schema.define(version: 20160816133123) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -29,11 +29,12 @@ ActiveRecord::Schema.define(version: 20160712194233) do
     t.string   "token"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.string   "company_images"
+    t.text     "company_images"
     t.integer  "user_id"
     t.string   "days"
     t.integer  "subcategory_id"
     t.integer  "category_id"
+    t.string   "phone"
   end
 
   add_index "companies", ["category_id"], name: "index_companies_on_category_id"
@@ -98,6 +99,9 @@ ActiveRecord::Schema.define(version: 20160712194233) do
     t.date     "birthday"
     t.string   "gender"
     t.string   "auth_token"
+    t.text     "picture"
+    t.string   "description"
+    t.string   "phone"
   end
 
 end

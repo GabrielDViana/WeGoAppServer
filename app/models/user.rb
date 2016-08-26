@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessible :password, :email, :name, :id_social, :score, :birthday,
-    :gender
+    :gender, :picture, :phone, :description
   has_many :companies
   has_many :ratings
   has_many :favorites

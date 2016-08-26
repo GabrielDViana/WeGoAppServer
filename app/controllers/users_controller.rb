@@ -19,7 +19,7 @@ skip_before_filter :verify_authenticity_token, :only => [:update]
   end
   def user_params
     params.require(:user).permit(:name , :email, :id_social, :password,
-      :password_confirmation, :birthday, :gender)
+      :password_confirmation, :birthday, :gender, :picture, :phone, :description)
   end
 
 end
