@@ -52,7 +52,7 @@ class CompaniesController < ApplicationController
   def show
     @average_rating = @company.average_rating
     puts @average_rating
-    render :json => @company , :include => [:user, :favorites, :ratings] , :methods => [:average_rating, :people_rated]
+    render :json => @company , :include => [:user, :favorites, :ratings] , :methods => [:average_rating, :people_rated, :operating]
   end
 
   def edit

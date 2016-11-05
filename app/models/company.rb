@@ -53,6 +53,21 @@ def people_rated
   self.ratings.size
 end
 
+def operating
+  weekday = Time.now.strftime("%A")
+  time_now = Time.now.strftime("%H:%M")
+
+  operating_days = self.days
+
+  operating_days.each { |day|
+    if weekday == day && time_now >= self.time_opens.strftime("%H:%M") &&
+      time_now <= self.time_closes.strftime("%H:%M")
+        return true
+    end
+  }
+  return false
+end
+
 private
   def end_after_start_time
     return if time_closes.blank? || time_opens.blank?
